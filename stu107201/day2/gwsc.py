@@ -30,11 +30,15 @@ while flag:
             flag1 = True
             while flag1:
                 usel = input('>>请输入商品名称：')
+
+
                 if usel.strip() in comm_dict.keys():
+                    print("请输入要购买商品%s的数量"%usel)
+                    count = input('>>请输入数量：')
 #当用户余额大于要购买商品信息时，允许购买
                     if balance >= int(comm_dict[usel]):
                         print(usel+"购买成功")
-                        balance = balance - int(comm_dict[usel])
+                        balance = balance - int(comm_dict[usel])*int(count)
                         print("余额："+str(balance))
 #当用户余额小于购买商品信息时，继续循环商品信息供用户选择
                     else:

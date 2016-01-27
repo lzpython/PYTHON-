@@ -7,7 +7,7 @@ user_file = open('user','r+')
 user_line = user_file.readlines()
 flag = True
 comm_dict = {'洗衣机':'1800','电饭堡':'300','自行车':'1200'}
-list = []
+li = []
 while flag:
     print("欢迎登陆购物商场".center(50,'*'))
     us = input(">>请输入用户名：")
@@ -39,7 +39,10 @@ while flag:
                     if balance >= int(comm_dict[usel]):
                         print(usel+"购买成功")
                         balance = balance - int(comm_dict[usel])*int(count)
-                        print("余额："+str(balance))
+                        print(balance)
+                        print(type(balance))
+                        print("余额：",str(balance))
+
 #当用户余额小于购买商品信息时，继续循环商品信息供用户选择
                     else:
                         print("用户余额不足，请选择其他商品或充值后再购买此商品")
@@ -47,16 +50,20 @@ while flag:
 #                        flag = False
 #                        break
                 elif usel == 'q':
-                    flag = False
+#                    flag = False
                     print("退出购物商城".center(50,'*'))
                     break
 #将用户账号与余额定入文件
-            user_list[2] = str(balance)
-            str = ':'.join(user_list)
-            list.append(str)
-            str2 = '\n'.join(list)
-            user_file1 = open('user','w+')
-            user_file1.write(str2)
-            user_file1.close()
+                user_list[2] = str(balance)
+        flag = False
+
+        ss = ':'.join(user_list)
+        li.append(ss)
+        ss2 = '\n'.join(li)
+        user_file1 = open('user','w+')
+        user_file1.write(ss2)
+        user_file1.close()
+
     if flag == False:
         break
+
